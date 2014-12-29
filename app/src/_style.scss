@@ -2747,6 +2747,11 @@ fieldset[disabled] .i-checks input + i:before {
   border-color: #27c24c;
 }
 
+.form-control-feedback {
+  top: 10px;
+  right: 10px;
+}
+
 .form-validation .i-checks .ng-invalid.ng-dirty + i {
   border-color: #f05050;
 }
