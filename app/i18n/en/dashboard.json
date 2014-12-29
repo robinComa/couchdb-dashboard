@@ -1,0 +1,11 @@
+{
+    "dashboard.query": "Data Visualization",
+    "dashboard.label.endpoint": "Endpoint",
+    "dashboard.label.endpoint.placeholder": "book",
+    "dashboard.label.map": "Map function",
+    "dashboard.label.map.placeholder": "function(doc){\n\temit(doc._id, doc);\n}",
+    "dashboard.label.reduce": "Reduce function",
+    "dashboard.label.reduce.placeholder": "function(key, value, rereduce){\n\treturn value.length;\n}",
+    "dashboard.form.submit.table": "Show into table",
+    "dashboard.result.title": "Results"
+}

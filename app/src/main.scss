@@ -1,0 +1,25 @@
+@import "style";
+
+header{
+  @import "header/style";
+}
+nav{
+  @import "nav/style";
+}
+aside{
+  @import "aside/style";
+}
+article{
+  @import "article/dashboard/style";
+}
+
+nav, aside, article{
+  height: calc(100% - 50px);
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+#loading-bar .bar{
+  position: fixed;
+  top: 48px;
+}
