@@ -23,7 +23,6 @@ angular.module('app').controller('DashboardCtrl', function($scope, $pouchDbResou
                 skip: 0
             }, fn).then(function(results){
                 $scope.results = results;
-                $scope.active = false;
             })
         }
     };

@@ -38,25 +38,17 @@
             <span class="fa fa-table"></span>
         </button>
     </div>
+    <table class="panel-footer table table-striped m-b-none" ng-show="results">
+        <thead>
+        <tr>
+            <th ng-repeat="(key, value) in results[0]">{{key}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="result in results">
+            <td ng-repeat="value in result">{{value}}</td>
+        </tr>
+        </tbody>
+    </table>
     <!-- /settings -->
 </form>
-
-<div class="col-xs-12" ng-show="results">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            {{'dashboard.result.title' | translate}}
-        </div>
-        <table class="table table-striped m-b-none">
-            <thead>
-                <tr>
-                    <th ng-repeat="(key, value) in results[0]">{{key}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="result in results">
-                    <td ng-repeat="value in result">{{value}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>

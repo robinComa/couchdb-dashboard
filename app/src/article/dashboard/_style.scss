@@ -2,9 +2,15 @@
   padding: 0px 0px 0px 0px !important;
   background-color: #f0f3f4;
   textarea.form-control{
-    height: 100px;
+    height: 80px;
   }
   .title{
     margin-bottom: 20px;
+  }
+  .settings{
+    table.panel-footer{
+      height: 100px;
+      overflow: hidden;
+    }
   }
 }

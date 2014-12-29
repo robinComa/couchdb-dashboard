@@ -2207,10 +2207,10 @@ fieldset[disabled] .btn-black.active {
 
 .settings {
   position: absolute;
-  top: 50px;
-  left: -400px;
+  top: 120px;
+  left: -70%;
   z-index: 99;
-  width: 400px;
+  width: 70%;
   -webkit-transition: right 0.2s;
   transition: right 0.2s;
 }
