@@ -1,16 +1,15 @@
-&{
-  padding: 0px 0px 0px 0px !important;
-  background-color: #f0f3f4;
-  textarea.form-control{
-    height: 80px;
+
+textarea.form-control{
+  height: 80px;
+}
+.settings{
+  height: calc(100% - 120px);
+  .panel-body{
+    height: calc(100% - 90px);
+    overflow-x: auto;
   }
-  .title{
-    margin-bottom: 20px;
-  }
-  .settings{
-    table.panel-footer{
-      height: 100px;
-      overflow: hidden;
-    }
+  table.panel-footer{
+    height: 100px;
+    overflow: hidden;
   }
 }

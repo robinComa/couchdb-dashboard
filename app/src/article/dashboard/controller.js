@@ -5,7 +5,8 @@ angular.module('app').controller('DashboardCtrl', function($scope, $pouchDbResou
         map : function(doc) {
             emit(doc.text.split(' ')[0], doc);
         }.toString(),
-        reduce: null
+        reduce: null,
+        type: 'TABLE'
     };
 
     $scope.submitSearch = function(){

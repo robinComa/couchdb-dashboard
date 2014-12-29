@@ -1,54 +1,76 @@
 <div class="title bg-light lter b-b wrapper-md ng-scope">
-    <h1 class="m-n font-thin h3">Analyse 1</h1>
+    <h1 class="m-n font-thin h3">
+        <span class="fa fa-file-text-o fa-x"></span>
+        Analyse 1
+    </h1>
 </div>
 
-<form name="form" class="settings panel panel-default ng-scope" ng-init="active = true" ng-class="{active: active}" novalidate="novalidate" ng-submit="submitSearch()">
-    <!-- settings -->
-    <button type="button" class="btn btn-default no-shadow pos-abt" ng-click="active = !active">
-        <i class="fa fa-spin fa-gear"></i>
-    </button>
-    <div class="panel-heading">
-        {{'dashboard.query' | translate}}
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <label for="endpoint" class="col-xs-3 control-label">{{'dashboard.label.endpoint' | translate}}</label>
-            <div class="col-xs-9">
-                <input id="endpoint" type="text" class="form-control" placeholder="{{'dashboard.label.endpoint.placeholder' | translate}}" ng-model="search.endpoint" required/>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label for="map" class="col-sm-3 control-label">{{'dashboard.label.map' | translate}}</label>
-            <div class="col-sm-9">
-                <textarea id="map" type="text" class="form-control" placeholder="{{'dashboard.label.map.placeholder' | translate}}" ng-model="search.map" required></textarea>
-            </div>
-        </div>
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <label for="reduce" class="col-sm-3 control-label">{{'dashboard.label.reduce' | translate}}</label>
-            <div class="col-sm-9">
-                <textarea id="reduce" type="text" class="form-control" placeholder="{{'dashboard.label.reduce.placeholder' | translate}}" ng-model="search.reduce"></textarea>
-            </div>
-        </div>
-    </div>
-    <div class="panel-footer">
-        <button type="submit" class="btn btn-success" ng-disabled="!form.$valid">
-            {{'dashboard.form.submit.table' | translate}}
-            <span class="fa fa-table"></span>
+<div class="body">
+    <form name="form" class="settings panel panel-default ng-scope" ng-init="active = true" ng-class="{active: active}" novalidate="novalidate" ng-submit="submitSearch()">
+        <!-- settings -->
+        <button type="button" class="btn btn-default no-shadow pos-abt" ng-click="active = !active">
+            <i class="fa fa-eye"></i>
         </button>
-    </div>
-    <table class="panel-footer table table-striped m-b-none" ng-show="results">
-        <thead>
-        <tr>
-            <th ng-repeat="(key, value) in results[0]">{{key}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="result in results">
-            <td ng-repeat="value in result">{{value}}</td>
-        </tr>
-        </tbody>
-    </table>
-    <!-- /settings -->
-</form>
+        <div class="panel-heading">
+            {{'dashboard.query' | translate}}
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="endpoint" class="col-xs-3 control-label">{{'dashboard.label.endpoint' | translate}}</label>
+                <div class="col-xs-9">
+                    <input id="endpoint" type="text" class="form-control" placeholder="{{'dashboard.label.endpoint.placeholder' | translate}}" ng-model="search.endpoint" required/>
+                </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+                <label for="map" class="col-xs-3 control-label">{{'dashboard.label.map' | translate}}</label>
+                <div class="col-xs-9">
+                    <textarea id="map" type="text" class="form-control" placeholder="{{'dashboard.label.map.placeholder' | translate}}" ng-model="search.map" required></textarea>
+                </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+                <label for="reduce" class="col-xs-3 control-label">{{'dashboard.label.reduce' | translate}}</label>
+                <div class="col-xs-9">
+                    <textarea id="reduce" type="text" class="form-control" placeholder="{{'dashboard.label.reduce.placeholder' | translate}}" ng-model="search.reduce"></textarea>
+                </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">{{'dashboard.label.result.type' | translate}}</label>
+                <div class="col-xs-9">
+                    <div class="btn-group">
+                        <label class="btn btn-default" ng-model="search.type" btn-radio="'TABLE'">
+                            <span class="fa fa-table"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+                <table class="table table-striped m-b-none" ng-show="results">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="(key, value) in results[0]">{{key}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="result in results">
+                        <td ng-repeat="value in result">{{value}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-default" ng-disabled="!form.$valid">
+                <span class="fa fa-cogs"></span>
+                {{'dashboard.form.result.show' | translate}}
+            </button>
+            <button type="submit" class="btn btn-success pull-right" ng-disabled="!form.$valid">
+                <span class="fa fa-save"></span>
+            </button>
+        </div>
+        <!-- /settings -->
+    </form>
+</div>

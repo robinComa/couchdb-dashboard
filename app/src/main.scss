@@ -10,13 +10,22 @@ aside{
   @import "aside/style";
 }
 article{
+  @import "article/style";
   @import "article/dashboard/style";
 }
 
+html, body{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 nav, aside, article{
   height: calc(100% - 50px);
-  overflow: auto;
-  overflow-x: hidden;
+  overflow: hidden;
+}
+nav, aside{
+  height: calc(100% - 50px);
+  overflow-Y: auto;
 }
 
 #loading-bar .bar{
