@@ -13,3 +13,11 @@ textarea.form-control{
     overflow: hidden;
   }
 }
+
+.analyse{
+  height: 200px;
+  overflow: hidden;
+  .loading{
+    margin-top: 50px;
+  }
+}

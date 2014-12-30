@@ -13,26 +13,20 @@ angular.module('pouchdb').provider('$pouchDbResource', function(){
     };
 
     this.settings = {
-        dbNamespace: null,
         debug: false
     };
 
     this.$get = function($q, cfpLoadingBar) {
 
-        var dbNamespace = this.settings.dbNamespace;
         if(this.settings.debug){
             PouchDB.debug.enable('*');
         }else{
             PouchDB.debug.disable();
         }
 
-        return function(resourceName){
+        return function(resource){
 
-            var db = new PouchDB(dbNamespace + resourceName, options);
-            if(dbNamespace){
-                //PouchDB.replicate(resourceName, dbNamespace + resourceName, {continuous: false});
-                //PouchDB.replicate(dbNamespace + resourceName, resourceName, {continuous: false});
-            }
+            var db = new PouchDB(resource, options);
 
             var Resource = function(){
                 this.$save = function () {
@@ -72,7 +66,7 @@ angular.module('pouchdb').provider('$pouchDbResource', function(){
 
             var toResources = function(doc){
                 return doc.rows.map(function (row) {
-                    return toResource(row.doc);
+                    return toResource(row.doc || row);
                 });
             };
 

@@ -1,10 +1,15 @@
 <!-- list -->
 <ul class="nav">
-
+    <li ng-repeat="dashboard in dashboards" ui-sref-active="active">
+        <a ui-sref="dashboard({id: dashboard.id})"  class="auto">
+            <span class="fa fa-table icon text-success"></span>
+            <span class="font-bold">{{dashboard.id}}</span>
+        </a>
+    </li>
     <!-- Live Query -->
     <li ui-sref-active="active">
         <a ui-sref="dashboard"  class="auto">
-            <span class="fa fa-plus-square-o icon text-success"></span>
+            <span class="fa fa-plus icon text-success"></span>
             <span class="font-bold">{{'nav.dashboard.new' | translate}}</span>
         </a>
     </li>

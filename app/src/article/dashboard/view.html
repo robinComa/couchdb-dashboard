@@ -1,84 +1,39 @@
 <div class="title bg-light lter b-b wrapper-md ng-scope">
+    <button class="btn btn-danger pull-right" ng-click="saveDashboard()">
+        <span class="fa fa-save"></span>
+        {{'dashboard.save' | translate}}
+    </button>
     <h1 class="m-n font-thin h3">
         <span class="fa fa-file-text-o fa-x"></span>
-        TODO : Analyse 1
+        {{dashboard._id}}
     </h1>
 </div>
 
+<div app-analyse-form="analyse" app-analyse-form-active="formActive" app-analyse-form-submit="formAnalyseSubmit"></div>
+
 <div class="body">
-    <form name="form" class="settings panel panel-default ng-scope" ng-init="active = true" ng-class="{active: active}" novalidate="novalidate" ng-submit="submitSearch()">
-        <!-- settings -->
-        <button type="button" class="btn btn-default no-shadow pos-abt" ng-click="active = !active">
-            <i class="fa fa-eye"></i>
-        </button>
-        <div class="panel-heading">
-            {{'dashboard.query' | translate}}
+
+    <div class="col-xs-6" ng-repeat="analyse in dashboard.analyses track by $index">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="btn-group pull-right">
+                    <button class="btn btn-primary btn-addon btn-xs" ng-click="updateAnalyse(analyse)">
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-primary btn-addon btn-xs" ng-click="deleteAnalyse($index)">
+                        <span class="fa fa-remove"></span>
+                    </button>
+                </div>
+
+                <h4 class="font-thin m-t-none m-b-none text-muted">{{analyse.title}}</h4>
+            </div>
+            <ul class="list-group list-group-lg m-b-none">
+                <li class="list-group-item">
+                    <div app-analyse="analyse"></div>
+                </li>
+            </ul>
         </div>
-        <div class="panel-body">
-            <div class="form-group has-feedback" ng-class="{'has-success': form.endPoint.$valid, 'has-error': !form.endPoint.$valid}">
-                <label for="endpoint" class="col-xs-3 control-label">{{'dashboard.label.endpoint' | translate}} *</label>
-                <div class="col-xs-9">
-                    <input id="endpoint" name="endPoint" type="text" class="form-control" placeholder="{{'dashboard.label.endpoint.placeholder' | translate}}" ng-model="search.endpoint" required/>
-                    <span ng-show="form.endPoint.$valid" class="fa fa-check form-control-feedback" aria-hidden="true"></span>
-                    <span ng-hide="form.endPoint.$valid" class="fa fa-remove form-control-feedback" aria-hidden="true"></span>
-                </div>
-            </div>
-            <div class="line line-dashed b-b line-lg pull-in"></div>
-            <div class="form-group has-feedback" ng-class="{'has-success': form.map.$valid, 'has-error': !form.map.$valid}">
-                <label for="map" class="col-xs-3 control-label">{{'dashboard.label.map' | translate}} *</label>
-                <div class="col-xs-9">
-                    <textarea ng-model-fn id="map" name="map" type="text" class="form-control" placeholder="{{'dashboard.label.map.placeholder' | translate}}" ng-model="search.map" required></textarea>
-                    <span ng-show="form.map.$valid" class="fa fa-check form-control-feedback" aria-hidden="true"></span>
-                    <span ng-hide="form.map.$valid" class="fa fa-remove form-control-feedback" aria-hidden="true"></span>
-                    <span ng-if="form.map.$error.parse" class="help-block m-b-none">{{'dashboard.label.fn.error.parse' | translate}}.</span>
-                </div>
-            </div>
-            <div class="line line-dashed b-b line-lg pull-in"></div>
-            <div class="form-group has-feedback" ng-class="{'has-success': form.reduce.$valid, 'has-error': !form.reduce.$valid}">
-                <label for="reduce" class="col-xs-3 control-label">{{'dashboard.label.reduce' | translate}}</label>
-                <div class="col-xs-9">
-                    <textarea ng-model-fn id="reduce" name="reduce" type="text" class="form-control" placeholder="{{'dashboard.label.reduce.placeholder' | translate}}" ng-model="search.reduce"></textarea>
-                    <span ng-show="form.reduce.$valid" class="fa fa-check form-control-feedback" aria-hidden="true"></span>
-                    <span ng-hide="form.reduce.$valid" class="fa fa-remove form-control-feedback" aria-hidden="true"></span>
-                    <span ng-if="form.reduce.$error.parse" class="help-block m-b-none">{{'dashboard.label.fn.error.parse' | translate}}.</span>
-                </div>
-            </div>
-            <div class="line line-dashed b-b line-lg pull-in"></div>
-            <div class="form-group has-feedback" ng-class="{'has-success': form.type.$valid, 'has-error': !form.type.$valid}">
-                <label class="col-xs-3 control-label">{{'dashboard.label.result.type' | translate}} *</label>
-                <div class="col-xs-9">
-                    <div class="btn-group">
-                        <label class="btn btn-default" name="type" ng-model="search.type" btn-radio="'TABLE'">
-                            <span class="fa fa-table"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="line line-dashed b-b line-lg pull-in"></div>
-            <div class="form-group">
-                <table class="table table-striped m-b-none" ng-show="results">
-                    <thead>
-                    <tr>
-                        <th ng-repeat="(key, value) in results[0]">{{key}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="result in results">
-                        <td ng-repeat="value in result">{{value}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel-footer">
-            <button type="submit" class="btn btn-default" ng-disabled="!form.$valid">
-                <span class="fa fa-cogs"></span>
-                {{'dashboard.form.result.show' | translate}}
-            </button>
-            <button type="submit" class="btn btn-success pull-right" ng-disabled="!form.$valid">
-                <span class="fa fa-save"></span>
-            </button>
-        </div>
-        <!-- /settings -->
-    </form>
+    </div>
+
 </div>
+

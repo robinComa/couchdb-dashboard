@@ -1,6 +1,6 @@
 angular.module('app').config(function($stateProvider, $urlRouterProvider){
 
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/dashboard/');
 
     $stateProvider
         .state('app', {
@@ -12,7 +12,8 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider){
                     controller: 'HeaderCtrl'
                 },
                 nav: {
-                    templateUrl: 'src/nav/view.html'
+                    templateUrl: 'src/nav/view.html',
+                    controller: 'NavCtrl'
                 },
                 aside: {
                     templateUrl: 'src/aside/view.html'
@@ -39,10 +40,23 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider){
             }
         })
         .state('dashboard', {
-            url: 'dashboard',
+            url: 'dashboard/{id}',
             parent: 'article',
             templateUrl: 'src/article/dashboard/view.html',
-            controller: 'DashboardCtrl'
+            controller: 'DashboardCtrl',
+            resolve: {
+                dashboard: function(Dashboard, $stateParams){
+                    var dashboard;
+                    if($stateParams.id){
+                        return Dashboard.get($stateParams.id);
+                    }else{
+                        return new Dashboard();
+                    }
+                },
+                formActive: function($stateParams){
+                    return !$stateParams.id;
+                }
+            }
         });
 
 });

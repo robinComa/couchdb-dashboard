@@ -1,31 +1,29 @@
-angular.module('app').controller('DashboardCtrl', function($scope, $pouchDbResource){
+angular.module('app').controller('DashboardCtrl', function($scope, dashboard, formActive){
 
-    $scope.search = {
-        endpoint: 'tweet',
-        map : function(doc) {
-            emit(doc.text.split(' ')[0], doc);
-        }.toString(),
-        reduce: null,
-        type: 'TABLE'
+    $scope.dashboard = dashboard;
+
+    $scope.formActive = formActive;
+
+    $scope.saveDashboard = function(){
+        $scope.dashboard.$save().then(function(){
+
+        });
     };
 
-    $scope.submitSearch = function(){
-        if($scope.form.$valid){
-            var fn = eval('(' + $scope.search.map + ')');
-            if($scope.search.reduce){
-                fn = {
-                    map: fn,
-                    reduce: eval('(' + $scope.search.reduce + ')')
-                }
-            }
-            var resource = new $pouchDbResource($scope.search.endpoint);
-            resource.query({
-                limit: 50,
-                skip: 0
-            }, fn).then(function(results){
-                $scope.results = results;
-            })
+    $scope.formAnalyseSubmit = function(analyse){
+        if(!$scope.dashboard.analyses){
+            $scope.dashboard.analyses = [];
         }
+        $scope.dashboard.analyses.push(analyse);
+    };
+
+    $scope.updateAnalyse = function(analyse){
+        $scope.analyse = angular.copy(analyse);
+        $scope.formActive = true;
+    };
+
+    $scope.deleteAnalyse = function(index){
+        $scope.dashboard.analyses.splice(index, 1);
     };
 
 });

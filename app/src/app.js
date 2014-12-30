@@ -3,10 +3,12 @@ angular.module('app', [
     'ui.bootstrap',
     'ui.router',
     'appLogin',
+    'appNgModel',
     'pascalprecht.translate',
     'infinite-scroll',
     'angular-loading-bar',
-    'pouchdb'
+    'pouchdb',
+    'googlechart'
 ]).config(function($translateProvider, $pouchDbResourceProvider){
 
     $translateProvider.useLoader('$translatePartialLoader', {
@@ -16,7 +18,6 @@ angular.module('app', [
 
     $translateProvider.cloakClassName('hidden');
 
-    $pouchDbResourceProvider.settings.dbNamespace = 'http://robin-db.iriscouch.com/';
     $pouchDbResourceProvider.settings.debug = false;
 
 }).run(function($translatePartialLoader, $translate, $rootScope, Login){
@@ -24,24 +25,4 @@ angular.module('app', [
     Login.getUser().then(function(user){
         $rootScope.user = user;
     });
-});
-
-angular.module('app').directive('ngModelFn', function(){
-    return {
-        require: 'ngModel',
-        scope:{
-            bindModel:'=ngModel'
-        },
-        link: function(scope, elem, attr, ctrl){
-            scope.$watch(function(){
-                return scope.bindModel;
-            }, function(val){
-                try{
-                    ctrl.$setValidity('parse', !val || typeof eval('(' + val + ')') === 'function');
-                }catch(err){
-                    ctrl.$setValidity('parse', false);
-                }
-            });
-        }
-    }
 });
