@@ -13,7 +13,7 @@ angular.module('appLogin', [
             return email;
         };
         this.getName = function(){
-            return name;
+            return name || email;
         };
         this.getPicture = function(){
             return picture;

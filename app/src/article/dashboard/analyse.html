@@ -1,31 +1,42 @@
 <div class="analyse">
 
-    <div class="loading" ng-if="!results">
+    <div ng-if="!results && analyse && !error" class="loading col-xs-6 col-xs-offset-3">
         <p class="text-center text-muted">{{'dashboard.analyse.loading' | translate}}...</p>
         <div class="progress progress-xs progress-striped active m-t-xs m-b-none">
             <div class="progress-bar progress-bar bg-info" data-toggle="tooltip" style="width: 100%"></div>
         </div>
     </div>
 
-    <table ng-if="results && analyse.type === 'TABLE'" class="table table-striped m-b-none">
-        <thead>
-        <tr>
-            <th ng-repeat="(key, value) in results[0]">{{key}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="result in results">
-            <td ng-repeat="value in result">{{value}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <blockquote ng-if="error">
+        <p class="text-danger">{{'dashboard.analyse.error.title' | translate}}!</p>
+        <small class="text-muted">
+            {{'dashboard.analyse.error.label' | translate}} :
+            <br>
+            <cite>{{error}}</cite>
+        </small>
+    </blockquote>
 
-    <div ng-if="results && analyse.type === 'PIE'" google-chart chart="pieResults"></div>
+    <div ng-if="results && !error">
+        <table ng-if="analyse.type === 'TABLE'" class="table table-striped m-b-none">
+            <thead>
+            <tr>
+                <th ng-repeat="(key, value) in results[0]">{{key}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="result in results">
+                <td ng-repeat="value in result">{{value}}</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <div ng-if="results && analyse.type === 'BAR'" google-chart chart="barResults"></div>
+        <div ng-if="analyse.type === 'PIE'" google-chart chart="pieResults"></div>
 
-    <div ng-if="results && analyse.type === 'COLUMN'" google-chart chart="columnResults"></div>
+        <div ng-if="analyse.type === 'BAR'" google-chart chart="barResults"></div>
 
-    <div ng-if="results && analyse.type === 'LINE'" google-chart chart="lineResults"></div>
+        <div ng-if="analyse.type === 'COLUMN'" google-chart chart="columnResults"></div>
+
+        <div ng-if="analyse.type === 'LINE'" google-chart chart="lineResults"></div>
+    </div>
 
 </div>

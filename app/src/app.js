@@ -2,6 +2,7 @@ angular.module('app', [
     'ngAnimate',
     'ui.bootstrap',
     'ui.router',
+    'ui.sortable',
     'appLogin',
     'appNgModel',
     'pascalprecht.translate',

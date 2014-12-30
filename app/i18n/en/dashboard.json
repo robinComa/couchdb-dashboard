@@ -13,5 +13,7 @@
     "dashboard.label.result.type": "Result type",
     "dashboard.form.result.show": "Preview",
     "dashboard.result.title": "Results",
-    "dashboard.analyse.loading": "Loading data"
+    "dashboard.analyse.loading": "Loading data",
+    "dashboard.analyse.error.title": "The query returns an error",
+    "dashboard.analyse.error.label": "Message"
 }

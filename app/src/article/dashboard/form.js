@@ -30,7 +30,7 @@ angular.module('app').directive('appAnalyseForm', function($pouchDbResource){
 
             scope.show = function(){
                 if(scope.form.$valid){
-                    scope.analyseToshow = scope.analyse;
+                    scope.analyseToshow = angular.copy(scope.analyse);
                 }
             };
 

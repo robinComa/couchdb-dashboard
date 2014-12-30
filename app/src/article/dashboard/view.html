@@ -13,29 +13,31 @@
 
 <div class="body">
 
-    <div class="col-xs-6" ng-repeat="analyse in dashboard.analyses track by $index">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="btn-group pull-right">
-                    <button class="btn btn-primary btn-addon btn-xs" ng-click="updateAnalyse(analyse)">
-                        <span class="fa fa-edit"></span>
-                    </button>
-                    <button class="btn btn-primary btn-addon btn-xs" ng-click="deleteAnalyse($index)">
-                        <span class="fa fa-remove"></span>
-                    </button>
-                </div>
+    <div class="col-xs-12">
+        <ul class="list-group" ui-sortable="" ng-model="dashboard.analyses">
+            <li as-sortable-item class="panel-analyse list-group-item col-xs-6 panel" ng-repeat="analyse in dashboard.analyses track by $index">
+                <div class="panel-heading">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-default btn-addon btn-xs" ng-click="updateAnalyse(analyse)">
+                            <span class="fa fa-edit"></span>
+                        </button>
+                        <button class="btn btn-default btn-addon btn-xs" ng-click="deleteAnalyse($index)">
+                            <span class="fa fa-remove"></span>
+                        </button>
+                    </div>
 
-                <h4 class="font-thin m-t-none m-b-none text-muted">
-                    <span class="fa" ng-class="{'fa-table': analyse.type === 'TABLE', 'fa-pie-chart': analyse.type === 'PIE', 'fa-rotate-90': analyse.type === 'BAR', 'fa-bar-chart': analyse.type === 'BAR' || analyse.type === 'COLUMN', 'fa-line-chart': analyse.type === 'LINE'}"></span>
-                    {{analyse.title}}
-                </h4>
-            </div>
-            <ul class="list-group list-group-lg m-b-none">
-                <li class="list-group-item">
-                    <div app-analyse="analyse"></div>
-                </li>
-            </ul>
-        </div>
+                    <h4 class="font-thin m-t-none m-b-none text-muted">
+                        <span class="fa" ng-class="{'fa-table': analyse.type === 'TABLE', 'fa-pie-chart': analyse.type === 'PIE', 'fa-rotate-90': analyse.type === 'BAR', 'fa-bar-chart': analyse.type === 'BAR' || analyse.type === 'COLUMN', 'fa-line-chart': analyse.type === 'LINE'}"></span>
+                        {{analyse.title}}
+                    </h4>
+                </div>
+                <ul class="list-group list-group-lg m-b-none">
+                    <li class="list-group-item">
+                        <div app-analyse="analyse"></div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 
 </div>

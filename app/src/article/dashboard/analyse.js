@@ -50,9 +50,19 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
         },
         link: function(scope){
 
+            var setResults = function(results){
+                scope.error = false;
+                scope.results = results;
+                scope.pieResults =  transformResults('PIE', results);
+                scope.barResults =  transformResults('BAR', results);
+                scope.columnResults =  transformResults('COLUMN', results);
+                scope.lineResults =  transformResults('LINE', results);
+            };
+
             scope.$watch(function(){
                 return scope.analyse;
             }, function(val){
+                setResults(null);
                 if(val){
                     var fn = eval('(' + scope.analyse.map + ')');
                     if(scope.analyse.reduce){
@@ -68,11 +78,9 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
                         include_docs: !scope.analyse.reduce,
                         group: !(!scope.analyse.reduce)
                     }, fn).then(function(results){
-                        scope.results = results;
-                        scope.pieResults =  transformResults('PIE', results);
-                        scope.barResults =  transformResults('BAR', results);
-                        scope.columnResults =  transformResults('COLUMN', results);
-                        scope.lineResults =  transformResults('LINE', results);
+                        setResults(results);
+                    }, function(error){
+                        scope.error = error.message;
                     });
                 }
             });
