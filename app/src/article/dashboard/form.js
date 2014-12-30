@@ -10,22 +10,10 @@ angular.module('app').directive('appAnalyseForm', function($pouchDbResource){
         },
         link: function(scope){
 
-            var init = function(){
-                scope.analyse = {
-                    title: null,
-                    endpoint: 'http://robin-db.iriscouch.com/tweet',
-                    map : function(doc) {
-                        emit(doc.text.split(' ')[0], doc);
-                    }.toString(),
-                    reduce: null
-                };
-            };
-            init();
-
             scope.toggleActive = function(){
                 scope.formActive = !scope.formActive;
                 scope.analyseToshow = null;
-                init();
+                scope.analyse = null;
             };
 
             scope.show = function(){

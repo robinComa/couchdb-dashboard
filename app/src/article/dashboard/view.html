@@ -1,5 +1,5 @@
 <div class="title bg-light lter b-b wrapper-md ng-scope">
-    <button class="btn btn-danger pull-right" ng-click="saveDashboard()">
+    <button class="btn btn-danger pull-right" ng-click="saveDashboard()" ng-show="hasChange">
         <span class="fa fa-save"></span>
         {{'dashboard.save' | translate}}
     </button>
@@ -18,7 +18,7 @@
             <li as-sortable-item class="panel-analyse list-group-item col-xs-6 panel" ng-repeat="analyse in dashboard.analyses track by $index">
                 <div class="panel-heading">
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-addon btn-xs" ng-click="updateAnalyse(analyse)">
+                        <button class="btn btn-default btn-addon btn-xs" ng-click="updateAnalyse(analyse, $index)">
                             <span class="fa fa-edit"></span>
                         </button>
                         <button class="btn btn-default btn-addon btn-xs" ng-click="deleteAnalyse($index)">

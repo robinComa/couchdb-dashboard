@@ -21,9 +21,10 @@
             <div class="form-group has-feedback row" ng-class="{'has-success': form.endPoint.$valid, 'has-error': !form.endPoint.$valid}">
                 <label for="endpoint" class="col-xs-12 control-label">{{'dashboard.label.endpoint' | translate}} *</label>
                 <div class="col-xs-12">
-                    <input id="endpoint" name="endPoint" type="text" class="form-control" placeholder="{{'dashboard.label.endpoint.placeholder' | translate}}" ng-model="analyse.endpoint" required/>
+                    <input id="endpoint" name="endPoint" type="url" class="form-control" placeholder="{{'dashboard.label.endpoint.placeholder' | translate}}" ng-model="analyse.endpoint" required/>
                     <span ng-show="form.endPoint.$valid" class="fa fa-check form-control-feedback" aria-hidden="true"></span>
                     <span ng-hide="form.endPoint.$valid" class="fa fa-remove form-control-feedback" aria-hidden="true"></span>
+                    <span ng-if="form.endPoint.$error.url" class="help-block m-b-none">{{'dashboard.label.endpoint.error.url' | translate}}.</span>
                 </div>
             </div>
             <div class="line line-dashed b-b line-lg pull-in"></div>
