@@ -4,13 +4,13 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
         toTable: function(results){
             return results;
         },
-        toPie: function(results){
+        toGoogleChart: function(type, results){
             var chartObject = {
-                type: 'PieChart',
+                type: type,
                 data: {
                     cols: [
-                        {id: "t", label: "Topping", type: "string"},
-                        {id: "s", label: "Slices", type: "number"}
+                        {id: "t", label: "Key", type: "string"},
+                        {id: "s", label: "Value", type: "number"}
                     ],
                     rows: []
                 }
@@ -30,7 +30,13 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
             case 'TABLE':
                 return adapter.toTable(results);
             case 'PIE':
-                return adapter.toPie(results);
+                return adapter.toGoogleChart('PieChart', results);
+            case 'BAR':
+                return adapter.toGoogleChart('BarChart', results);
+            case 'COLUMN':
+                return adapter.toGoogleChart('ColumnChart', results);
+            case 'LINE':
+                return adapter.toGoogleChart('LineChart', results);
             default:
                 return results;
         }
@@ -60,10 +66,13 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
                         limit: 50,
                         skip: 0,
                         include_docs: !scope.analyse.reduce,
-                        group: scope.analyse.reduce != null
+                        group: !(!scope.analyse.reduce)
                     }, fn).then(function(results){
                         scope.results = results;
-                        scope.pieResults =  transformResults(scope.analyse.type, results);
+                        scope.pieResults =  transformResults('PIE', results);
+                        scope.barResults =  transformResults('BAR', results);
+                        scope.columnResults =  transformResults('COLUMN', results);
+                        scope.lineResults =  transformResults('LINE', results);
                     });
                 }
             });

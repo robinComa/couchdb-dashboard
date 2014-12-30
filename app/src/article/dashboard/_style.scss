@@ -3,7 +3,7 @@ textarea.form-control{
   height: 80px;
 }
 .settings{
-  height: calc(100% - 120px);
+  height: calc(100% - 150px);
   .panel-body{
     height: calc(100% - 90px);
     overflow-x: auto;
@@ -17,6 +17,11 @@ textarea.form-control{
 .analyse{
   height: 200px;
   overflow: hidden;
+  table {
+      display: block;
+      height: 190px;
+      overflow: auto;
+  }
   .loading{
     margin-top: 50px;
   }
