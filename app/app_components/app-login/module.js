@@ -6,6 +6,10 @@ angular.module('appLogin', [
     this.type = 'google';
 
     var User = function(id, email, name, picture, link){
+        this.id = id;
+        this.name = name;
+        this.picture = picture;
+        this.link = link;
         this.getId = function(){
             return id;
         };

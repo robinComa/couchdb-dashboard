@@ -1,4 +1,4 @@
-angular.module('app').directive('appAnalyseForm', function($pouchDbResource){
+angular.module('app').directive('appAnalyseForm', function(Dashboard){
 
     return {
         replace: true,
@@ -9,6 +9,21 @@ angular.module('app').directive('appAnalyseForm', function($pouchDbResource){
             formSubmit: '=appAnalyseFormSubmit'
         },
         link: function(scope){
+
+            Dashboard.query({
+                group: true
+            }, {
+                map: function(doc) {
+                    doc.analyses.map(function(a){
+                        emit(a.endpoint);
+                    });
+                },
+                reduce: function(key, value){
+                    return value.length;
+                }
+            }).then(function(endPoints){
+                scope.endPoints = endPoints;
+            });
 
             scope.toggleActive = function(){
                 scope.formActive = !scope.formActive;

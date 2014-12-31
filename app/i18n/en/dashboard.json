@@ -1,5 +1,6 @@
 {
     "dashboard.save": "Save",
+    "dashboard.delete": "Delete",
     "dashboard.query": "Data Visualization",
     "dashboard.label.title": "Title",
     "dashboard.label.title.placeholder": "ex: My analysis's title",

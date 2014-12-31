@@ -1,12 +1,25 @@
-<div class="title bg-light lter b-b wrapper-md ng-scope">
-    <button class="btn btn-danger pull-right" ng-click="saveDashboard()" ng-show="hasChange">
-        <span class="fa fa-save"></span>
-        {{'dashboard.save' | translate}}
-    </button>
-    <h1 class="m-n font-thin h3">
-        <span class="fa fa-file-text-o fa-x"></span>
-        {{dashboard._id}}
-    </h1>
+<div class="title bg-light lter b-b wrapper-md row">
+    <div class="col-xs-6">
+        <h1 class="m-n font-thin h3">
+            <span class="fa fa-dashboard"></span>
+            <input type="hidden" ng-init="dashboard.author = dashboard.author || user" ng-model="dashboard.author"/>
+            <input class="h1-input" ng-if="!dashboard._id || isOwner" ng-model="dashboard.title"/>
+            <span ng-if="dashboard._id && !isOwner">{{dashboard.title}}</span>
+        </h1>
+    </div>
+    <div class="col-xs-6">
+        <div ng-if="isOwner" class="button-group pull-right">
+            <button class="btn btn-danger" ng-click="deleteDashboard()">
+                <span class="fa fa-trash"></span>
+                {{'dashboard.delete' | translate}}
+            </button>
+            <button class="btn btn-danger" ng-click="saveDashboard()" ng-disabled="!hasChange">
+                <span class="fa fa-save"></span>
+                {{'dashboard.save' | translate}}
+            </button>
+        </div>
+    </div>
+
 </div>
 
 <div app-analyse-form="analyse" app-analyse-form-active="formActive" app-analyse-form-submit="formAnalyseSubmit"></div>
@@ -17,7 +30,7 @@
         <ul class="list-group" ui-sortable="" ng-model="dashboard.analyses">
             <li as-sortable-item class="panel-analyse list-group-item col-xs-6 panel" ng-repeat="analyse in dashboard.analyses track by $index">
                 <div class="panel-heading">
-                    <div class="btn-group pull-right">
+                    <div ng-if="isOwner" class="btn-group pull-right">
                         <button class="btn btn-default btn-addon btn-xs" ng-click="updateAnalyse(analyse, $index)">
                             <span class="fa fa-edit"></span>
                         </button>

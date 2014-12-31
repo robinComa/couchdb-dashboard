@@ -23,10 +23,6 @@ nav, aside, article{
   height: calc(100% - 50px);
   overflow: hidden;
 }
-nav, aside{
-  height: calc(100% - 50px);
-  overflow-Y: auto;
-}
 
 #loading-bar .bar{
   position: fixed;

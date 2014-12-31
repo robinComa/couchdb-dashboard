@@ -16,14 +16,11 @@ angular.module('app', [
         urlTemplate: 'i18n/{lang}/{part}.json'
     });
     $translateProvider.preferredLanguage('en');
-
     $translateProvider.cloakClassName('hidden');
 
     $pouchDbResourceProvider.settings.debug = false;
 
-}).run(function($translatePartialLoader, $translate, $rootScope, Login){
+}).run(function(){
 
-    Login.getUser().then(function(user){
-        $rootScope.user = user;
-    });
+
 });
