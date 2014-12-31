@@ -6,8 +6,11 @@ html {
   background-color: #f0f3f4;
 }
 
-body {
+*{
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   line-height: 1.42857143;
@@ -4095,6 +4098,9 @@ a.text-#000000:hover {
 
 .box-shadow-lg {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+}
+.box-shadow-lg-left {
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.05);
 }
 
 .text-shadow {

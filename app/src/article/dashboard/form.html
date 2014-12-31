@@ -1,7 +1,7 @@
 <form name="form" class="settings panel panel-default ng-scope" ng-class="{active: formActive}" novalidate="novalidate" ng-submit="submit()">
     <!-- settings -->
     <button type="button" class="btn btn-default no-shadow pos-abt" ng-click="toggleActive()">
-        <i class="fa fa-eye"></i>
+        <i class="fa fa-cogs"></i>
     </button>
     <div class="panel-heading">
         {{'dashboard.query' | translate}}
@@ -79,13 +79,15 @@
 
     </div>
     <div class="panel-footer">
-        <button type="button" ng-click="show()" class="btn btn-default" ng-disabled="!form.$valid">
-            <span class="fa fa-cogs"></span>
-            {{'dashboard.form.result.show' | translate}}
-        </button>
-        <button type="submit" class="btn btn-success pull-right" ng-disabled="!form.$valid">
-            <span class="fa fa-save"></span>
-        </button>
+        <div class="btn-group pull-right">
+            <button type="button" ng-click="show()" class="btn btn-default" ng-disabled="!form.$valid">
+                <span class="fa fa-eye"></span>
+                {{'dashboard.form.result.show' | translate}}
+            </button>
+            <button type="submit" class="btn btn-primary" ng-disabled="!form.$valid">
+                <span class="fa" ng-class="{'fa-plus': !analyse.$index, 'fa-save': analyse.$index > -1}"></span>
+            </button>
+        </div>
     </div>
     <!-- /settings -->
 </form>
