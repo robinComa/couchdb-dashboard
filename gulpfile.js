@@ -38,7 +38,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('template', function () {
-    return gulp.src(['app/src/**/*.html']).pipe(angularTemplatecache({
+    return gulp.src(['app/app_components/**/*.html', 'app/src/**/*.html']).pipe(angularTemplatecache({
         module: 'app', root: 'src/'
     })).pipe(gulp.dest('dist/scripts'));
 });
