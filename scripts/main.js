@@ -1,9 +1,21 @@
 angular.module('appLogin', [
     'directive.g+signin',
     'angular-loading-bar'
-]).provider('Login', function(){
+]).directive('appLoginFrame', function(Login){
+    return {
+        scope : {},
+        restrict: 'A',
+        templateUrl: 'app_components/app-login/view.html',
+        link: function(scope){
+            scope.config = Login.config;
+        }
+    }
+}).provider('Login', function(){
 
-    this.type = 'google';
+    this.config = {
+        type: 'google',
+        app_id: 00000000
+    };
 
     var User = function(id, email, name, picture, link){
         this.id = id;
@@ -34,7 +46,7 @@ angular.module('appLogin', [
 
         cfpLoadingBar.start();
 
-        if(this.type === 'google'){
+        if(this.config.type === 'google'){
 
             $rootScope.$on('event:google-plus-signin-success', function (event,authResult) {
                 gapi.auth.setToken(authResult);
@@ -58,7 +70,8 @@ angular.module('appLogin', [
             },
             logout: function(){
                 return logout();
-            }
+            } ,
+            config: this.config
         }
     };
 
@@ -201,7 +214,7 @@ angular.module('app', [
     'angular-loading-bar',
     'pouchdb',
     'googlechart'
-]).config(function($translateProvider, $pouchDbResourceProvider){
+]).config(function($translateProvider, $pouchDbResourceProvider, LoginProvider, config){
 
     $translateProvider.useLoader('$translatePartialLoader', {
         urlTemplate: 'i18n/{lang}/{part}.json'
@@ -211,8 +224,22 @@ angular.module('app', [
 
     $pouchDbResourceProvider.settings.debug = false;
 
+    LoginProvider.config = config.login;
+
 }).run(function(){
 
+
+});
+angular.module('app').constant('config', {
+
+    login: {
+        type: 'google',
+        app_id: 631974897480
+    },
+    backend: {
+        endpoint: 'http://robin-db.iriscouch.com/',
+        resource: 'dashboard'
+    }
 
 });
 angular.module('app').config(function($stateProvider, $urlRouterProvider){
@@ -446,8 +473,8 @@ angular.module('app').directive('appAnalyseForm', function(Dashboard){
     };
 
 });
-angular.module('app').factory('Dashboard', function($pouchDbResource){
-    return new $pouchDbResource('http://robin-db.iriscouch.com/dashboard');
+angular.module('app').factory('Dashboard', function($pouchDbResource, config){
+    return new $pouchDbResource(config.backend.endpoint + config.backend.resource);
 });
 angular.module('app').controller('DashboardCtrl', function($rootScope, $scope, dashboard, formActive, $state){
 
