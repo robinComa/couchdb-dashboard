@@ -5,7 +5,7 @@ angular.module('appLogin', [
     return {
         scope : {},
         restrict: 'A',
-        templateUrl: 'app_components/app-login/view.html',
+        templateUrl: 'src/commons/app-login/view.html',
         link: function(scope){
             scope.config = Login.config;
         }
