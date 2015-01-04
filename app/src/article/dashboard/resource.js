@@ -1,3 +1,3 @@
-angular.module('app').factory('Dashboard', function($pouchDbResource){
-    return new $pouchDbResource('http://robin-db.iriscouch.com/dashboard');
+angular.module('app').factory('Dashboard', function($pouchDbResource, config){
+    return new $pouchDbResource(config.backend.endpoint + config.backend.resource);
 });

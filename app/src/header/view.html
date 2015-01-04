@@ -159,9 +159,7 @@
         <!-- / dropdown -->
     </li>
     <li ng-if="!user">
-        <div class="signin" ng-app="directive.g+signin">
-            <google-plus-signin clientid="631974897480"></google-plus-signin>
-        </div>
+        <div class="signin" app-login-frame></div>
     </li>
     <li class="dropdown" dropdown ng-if="user">
         <a href class="dropdown-toggle clear" dropdown-toggle>

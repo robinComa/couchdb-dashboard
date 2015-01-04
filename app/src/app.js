@@ -10,7 +10,7 @@ angular.module('app', [
     'angular-loading-bar',
     'pouchdb',
     'googlechart'
-]).config(function($translateProvider, $pouchDbResourceProvider){
+]).config(function($translateProvider, $pouchDbResourceProvider, LoginProvider, config){
 
     $translateProvider.useLoader('$translatePartialLoader', {
         urlTemplate: 'i18n/{lang}/{part}.json'
@@ -19,6 +19,8 @@ angular.module('app', [
     $translateProvider.cloakClassName('hidden');
 
     $pouchDbResourceProvider.settings.debug = false;
+
+    LoginProvider.config = config.login;
 
 }).run(function(){
 

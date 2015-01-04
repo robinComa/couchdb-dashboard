@@ -1,9 +1,21 @@
 angular.module('appLogin', [
     'directive.g+signin',
     'angular-loading-bar'
-]).provider('Login', function(){
+]).directive('appLoginFrame', function(Login){
+    return {
+        scope : {},
+        restrict: 'A',
+        templateUrl: 'app_components/app-login/view.html',
+        link: function(scope){
+            scope.config = Login.config;
+        }
+    }
+}).provider('Login', function(){
 
-    this.type = 'google';
+    this.config = {
+        type: 'google',
+        app_id: 00000000
+    };
 
     var User = function(id, email, name, picture, link){
         this.id = id;
@@ -34,7 +46,7 @@ angular.module('appLogin', [
 
         cfpLoadingBar.start();
 
-        if(this.type === 'google'){
+        if(this.config.type === 'google'){
 
             $rootScope.$on('event:google-plus-signin-success', function (event,authResult) {
                 gapi.auth.setToken(authResult);
@@ -58,7 +70,8 @@ angular.module('appLogin', [
             },
             logout: function(){
                 return logout();
-            }
+            } ,
+            config: this.config
         }
     };
 
