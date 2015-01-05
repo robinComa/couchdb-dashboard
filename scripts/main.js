@@ -336,9 +336,6 @@ angular.module('app').controller('NavCtrl', function($rootScope, $scope, Dashboa
 angular.module('app').directive('appAnalyse', function($pouchDbResource){
 
     var adapter = {
-        toTable: function(results){
-            return results;
-        },
         toGoogleChart: function(type, results){
             var chartObject = {
                 type: type,
@@ -363,7 +360,7 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
     var transformResults = function(type, results){
         switch (type){
             case 'TABLE':
-                return adapter.toTable(results);
+                return adapter.toGoogleChart('Table', results);
             case 'PIE':
                 return adapter.toGoogleChart('PieChart', results);
             case 'BAR':
@@ -372,6 +369,8 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
                 return adapter.toGoogleChart('ColumnChart', results);
             case 'LINE':
                 return adapter.toGoogleChart('LineChart', results);
+            case 'GEO':
+                return adapter.toGoogleChart('GeoChart', results);
             default:
                 return results;
         }
@@ -385,19 +384,15 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
         },
         link: function(scope){
 
-            var setResults = function(results){
+            var setResults = function(results, type){
                 scope.error = false;
-                scope.results = results;
-                scope.pieResults =  transformResults('PIE', results);
-                scope.barResults =  transformResults('BAR', results);
-                scope.columnResults =  transformResults('COLUMN', results);
-                scope.lineResults =  transformResults('LINE', results);
+                scope.results = results && type ? transformResults(type, results) : null;
             };
 
             scope.$watch(function(){
                 return scope.analyse;
             }, function(val){
-                setResults(null);
+                setResults();
                 if(val){
                     var fn = eval('(' + scope.analyse.map + ')');
                     if(scope.analyse.reduce){
@@ -408,12 +403,13 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
                     }
                     var resource = new $pouchDbResource(scope.analyse.endpoint);
                     resource.query({
-                        limit: 50,
+                        limit: 1000,
                         skip: 0,
+                        descending:false,
                         include_docs: !scope.analyse.reduce,
                         group: !(!scope.analyse.reduce)
                     }, fn).then(function(results){
-                        setResults(results);
+                        setResults(results, scope.analyse.type);
                     }, function(error){
                         scope.error = error.message;
                     });

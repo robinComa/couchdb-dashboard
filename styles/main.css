@@ -3896,10 +3896,15 @@ article .panel-analyse {
 article .analyse {
   height: 200px;
   overflow: hidden; }
-  article .analyse table {
+  article .analyse .chart-geo {
+    margin-top: -40px; }
+  article .analyse .chart-table table {
     display: block;
     height: 190px;
     overflow: auto; }
+    article .analyse .chart-table table tbody {
+      display: table;
+      width: 100%; }
   article .analyse .loading {
     margin-top: 50px; }
 
