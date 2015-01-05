@@ -26,10 +26,19 @@ textarea.form-control{
 .analyse{
   height: 200px;
   overflow: hidden;
-  table {
+  .chart-geo{
+    margin-top: -40px;
+  }
+  .chart-table {
+    table{
       display: block;
       height: 190px;
       overflow: auto;
+      tbody{
+        display: table;
+        width: 100%;
+      }
+    }
   }
   .loading{
     margin-top: 50px;

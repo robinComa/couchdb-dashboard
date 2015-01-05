@@ -16,27 +16,6 @@
         </small>
     </blockquote>
 
-    <div ng-if="results && !error">
-        <table ng-if="analyse.type === 'TABLE'" class="table table-striped m-b-none">
-            <thead>
-            <tr>
-                <th ng-repeat="(key, value) in results[0]">{{key}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="result in results">
-                <td ng-repeat="value in result">{{value}}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div ng-if="analyse.type === 'PIE'" google-chart chart="pieResults"></div>
-
-        <div ng-if="analyse.type === 'BAR'" google-chart chart="barResults"></div>
-
-        <div ng-if="analyse.type === 'COLUMN'" google-chart chart="columnResults"></div>
-
-        <div ng-if="analyse.type === 'LINE'" google-chart chart="lineResults"></div>
-    </div>
+    <div ng-if="results && !error" google-chart chart="results" class="chart-{{analyse.type.toLowerCase()}}"></div>
 
 </div>
