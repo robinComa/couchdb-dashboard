@@ -102,9 +102,15 @@ angular.module('pouchdb').provider('$pouchDbResource', function(){
             PouchDB.debug.disable();
         }
 
-        return function(resource){
+        return function(resource, auth){
 
             var db = new PouchDB(resource, options);
+
+            if(auth){
+                db.login(auth.login, auth.password).then(function () {
+
+                });
+            }
 
             var Resource = function(){
                 this.$save = function () {
@@ -224,7 +230,7 @@ angular.module('app', [
 
     $pouchDbResourceProvider.settings.debug = false;
 
-    LoginProvider.config = config.login;
+    LoginProvider.config = config.auth;
 
 }).run(function(){
 
@@ -232,12 +238,16 @@ angular.module('app', [
 });
 angular.module('app').constant('config', {
 
-    login: {
+    auth: {
         type: 'google',
         app_id: 631974897480
     },
     backend: {
         endpoint: 'https://dashboard-couchdb.iriscouch.com/',
+        auth: {
+            login: 'dashboard-couchdb',
+            password: 'P@$$w0rd'
+        },
         resource: 'dashboard'
     }
 
@@ -471,7 +481,7 @@ angular.module('app').directive('appAnalyseForm', function(Dashboard){
 
 });
 angular.module('app').factory('Dashboard', function($pouchDbResource, config){
-    return new $pouchDbResource(config.backend.endpoint + config.backend.resource);
+    return new $pouchDbResource(config.backend.endpoint + config.backend.resource, config.backend.auth);
 });
 angular.module('app').controller('DashboardCtrl', function($rootScope, $scope, dashboard, formActive, $state){
 
