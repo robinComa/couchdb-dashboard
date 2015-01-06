@@ -169,6 +169,7 @@ angular.module('pouchdb').provider('$pouchDbResource', function(){
                 db.query(fn || function(doc){
                     emit(doc._id, doc)
                 }, angular.extend(defaultParams, params), function (err, doc) {
+                    console.log('toto')
                     if (err) {
                         deferred.reject(err);
                     } else {
