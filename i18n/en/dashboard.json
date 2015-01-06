@@ -17,5 +17,5 @@
     "dashboard.result.title": "Results",
     "dashboard.analyse.loading": "Loading data",
     "dashboard.analyse.error.title": "The query returns an error",
-    "dashboard.analyse.error.label": "Message"
+    "dashboard.analyse.error.405": "You could not do an http request to the endpoint"
 }
