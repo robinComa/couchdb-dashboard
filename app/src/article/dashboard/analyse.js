@@ -76,7 +76,7 @@ angular.module('app').directive('appAnalyse', function($pouchDbResource){
                     }, fn).then(function(results){
                         setResults(results, scope.analyse.type);
                     }, function(error){
-                        scope.error = error.message;
+                        scope.error = error;
                     });
                 }
             });

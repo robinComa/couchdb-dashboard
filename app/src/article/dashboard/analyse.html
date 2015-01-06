@@ -10,9 +10,10 @@
     <blockquote ng-if="error">
         <p class="text-danger">{{'dashboard.analyse.error.title' | translate}}!</p>
         <small class="text-muted">
-            {{'dashboard.analyse.error.label' | translate}} :
+            {{error.status}} {{error.statusText}} :
             <br>
-            <cite>{{error}}</cite>
+            <cite ng-if="error.status === 405">{{'dashboard.analyse.error.405' | translate}}</cite>
+            <cite ng-if="error.message">{{error.message}}</cite>
         </small>
     </blockquote>
 
