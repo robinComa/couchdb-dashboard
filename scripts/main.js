@@ -237,7 +237,7 @@ angular.module('app').constant('config', {
         app_id: 631974897480
     },
     backend: {
-        endpoint: 'http://robin-db.iriscouch.com/',
+        endpoint: 'https://dashboard-couchdb.iriscouch.com/',
         resource: 'dashboard'
     }
 
@@ -427,7 +427,8 @@ angular.module('app').directive('appAnalyseForm', function(Dashboard){
         scope: {
             analyse: '=appAnalyseForm',
             formActive: '=appAnalyseFormActive',
-            formSubmit: '=appAnalyseFormSubmit'
+            formSubmit: '=appAnalyseFormSubmit',
+            isOwner: '=appAnalyseFormIsOwner'
         },
         link: function(scope){
 
@@ -476,7 +477,9 @@ angular.module('app').controller('DashboardCtrl', function($rootScope, $scope, d
 
     $scope.dashboard = dashboard;
 
-    $scope.isOwner = !dashboard.author || $rootScope.user && dashboard.author.id === $rootScope.user.id;
+    $scope.isOwner = function(){
+        return !dashboard.author || $rootScope.user && dashboard.author.id === $rootScope.user.id;
+    };
 
     if(!$scope.dashboard.title){
         $scope.dashboard.title = 'My Dashboard Title';
