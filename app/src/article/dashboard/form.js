@@ -6,7 +6,8 @@ angular.module('app').directive('appAnalyseForm', function(Dashboard){
         scope: {
             analyse: '=appAnalyseForm',
             formActive: '=appAnalyseFormActive',
-            formSubmit: '=appAnalyseFormSubmit'
+            formSubmit: '=appAnalyseFormSubmit',
+            isOwner: '=appAnalyseFormIsOwner'
         },
         link: function(scope){
 

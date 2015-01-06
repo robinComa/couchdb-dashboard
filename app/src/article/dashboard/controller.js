@@ -2,7 +2,9 @@ angular.module('app').controller('DashboardCtrl', function($rootScope, $scope, d
 
     $scope.dashboard = dashboard;
 
-    $scope.isOwner = !dashboard.author || $rootScope.user && dashboard.author.id === $rootScope.user.id;
+    $scope.isOwner = function(){
+        return !dashboard.author || $rootScope.user && dashboard.author.id === $rootScope.user.id;
+    };
 
     if(!$scope.dashboard.title){
         $scope.dashboard.title = 'My Dashboard Title';

@@ -5,7 +5,7 @@ angular.module('app').constant('config', {
         app_id: 631974897480
     },
     backend: {
-        endpoint: 'http://robin-db.iriscouch.com/',
+        endpoint: 'https://dashboard-couchdb.iriscouch.com/',
         resource: 'dashboard'
     }
 

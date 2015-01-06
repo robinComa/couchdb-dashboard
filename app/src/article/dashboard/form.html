@@ -87,7 +87,7 @@
                 <span class="fa fa-eye"></span>
                 {{'dashboard.form.result.show' | translate}}
             </button>
-            <button type="submit" class="btn btn-primary" ng-disabled="!form.$valid">
+            <button ng-if="isOwner()" type="submit" class="btn btn-primary" ng-disabled="!form.$valid">
                 <span class="fa" ng-class="{'fa-plus': !analyse.$index, 'fa-save': analyse.$index > -1}"></span>
             </button>
         </div>
