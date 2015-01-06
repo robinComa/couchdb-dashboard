@@ -24,9 +24,15 @@ angular.module('pouchdb').provider('$pouchDbResource', function(){
             PouchDB.debug.disable();
         }
 
-        return function(resource){
+        return function(resource, auth){
 
             var db = new PouchDB(resource, options);
+
+            if(auth){
+                db.login(auth.login, auth.password).then(function () {
+
+                });
+            }
 
             var Resource = function(){
                 this.$save = function () {

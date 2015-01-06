@@ -20,7 +20,7 @@ angular.module('app', [
 
     $pouchDbResourceProvider.settings.debug = false;
 
-    LoginProvider.config = config.login;
+    LoginProvider.config = config.auth;
 
 }).run(function(){
 
