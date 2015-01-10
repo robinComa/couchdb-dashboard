@@ -1,0 +1,68 @@
+<div>
+
+    <button type="button" class="btn btn-default pull-right" ng-click="showCode = !showCode">
+        <span class="fa fa-code"></span>
+    </button>
+
+    <div class="col-xs-10" ng-show="!showCode">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Results</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>
+                    Key
+                </th>
+                <td>
+                    <input ng-model="mapFn.result.key"/>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Value
+                </th>
+                <td>
+                    <input ng-model="mapFn.result.value"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-xs-12" ng-show="!showCode">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Restrictions</th>
+                    <th>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="addRestriction()">
+                            Add <span class="fa fa-plus"></span>
+                        </button>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="restriction in mapFn.restrictions track by $index">
+                    <th>
+                        <input class="col-xs-12" ng-model="mapFn.restrictions[$index].key"/>
+                    </th>
+                    <td>
+                        <input class="col-xs-12" ng-model="mapFn.restrictions[$index].value"/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="removeRestriction($index)"><span class="fa fa-trash"></span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-transclude ng-show="showCode" class="col-xs-10"></div>
+
+
+</div>

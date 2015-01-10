@@ -3,13 +3,14 @@ angular.module('app', [
     'ui.bootstrap',
     'ui.router',
     'ui.sortable',
-    'appLogin',
-    'appNgModel',
     'pascalprecht.translate',
     'infinite-scroll',
     'angular-loading-bar',
     'pouchdb',
-    'googlechart'
+    'googlechart',
+    'appLogin',
+    'appNgModel',
+    'appMapReduceFn',
 ]).config(function($translateProvider, $pouchDbResourceProvider, LoginProvider, config){
 
     $translateProvider.useLoader('$translatePartialLoader', {

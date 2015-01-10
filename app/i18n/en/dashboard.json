@@ -1,9 +1,8 @@
 {
     "dashboard.save": "Save",
     "dashboard.delete": "Delete",
-    "dashboard.query": "Data Visualization",
-    "dashboard.label.title": "Title",
-    "dashboard.label.title.placeholder": "ex: My analysis's title",
+    "dashboard.query": "EX : Data Visualization Title",
+    "dashboard.title.error": "Enter a title to save this analyse",
     "dashboard.label.endpoint": "Endpoint",
     "dashboard.label.endpoint.placeholder": "ex: http://xxxx.iriscouch.com/resource",
     "dashboard.label.endpoint.error.url": "It doesn't seems to a valid REST resource URL",

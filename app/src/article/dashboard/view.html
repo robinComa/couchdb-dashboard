@@ -3,7 +3,7 @@
         <h1 class="m-n font-thin h3">
             <span class="fa fa-dashboard"></span>
             <input type="hidden" ng-init="dashboard.author = dashboard.author || user" ng-model="dashboard.author"/>
-            <input class="h1-input" ng-if="!dashboard._id || isOwner()" ng-model="dashboard.title"/>
+            <input class="title-input" ng-if="!dashboard._id || isOwner()" ng-model="dashboard.title"/>
             <span ng-if="dashboard._id && !isOwner()">{{dashboard.title}}</span>
         </h1>
     </div>
@@ -27,8 +27,10 @@
 <div class="body">
 
     <div class="col-xs-12">
+
+
         <ul class="list-group" ui-sortable="" ng-model="dashboard.analyses">
-            <li as-sortable-item class="panel-analyse list-group-item col-xs-6 panel" ng-repeat="analyse in dashboard.analyses track by $index">
+            <li as-sortable-item class="panel-analyse list-group-item col-xs-12 col-sm-12 col-md-6 col-lg-4 panel" ng-repeat="analyse in dashboard.analyses track by $index">
                 <div class="panel-heading">
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-addon btn-xs" ng-click="updateAnalyse(analyse, $index)">

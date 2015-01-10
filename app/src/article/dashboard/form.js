@@ -32,11 +32,17 @@ angular.module('app').directive('appAnalyseForm', function(Dashboard){
                 scope.analyse = null;
             };
 
-            scope.show = function(){
-                if(scope.form.$valid){
+            scope.canShow = function(){
+                return scope.form.endPoint.$valid && scope.form.map.$valid;
+            };
+
+            scope.$watch(function(){
+                return scope.analyse;
+            }, function(){
+                if(scope.canShow()){
                     scope.analyseToshow = angular.copy(scope.analyse);
                 }
-            };
+            },true);
 
             scope.submit = function(){
                 if(scope.form.$valid){
