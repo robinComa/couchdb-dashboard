@@ -3871,16 +3871,20 @@ article {
   background-color: #f0f3f4; }
   article > * {
     height: 100%; }
+  article .title {
+    padding: 20px 20px 20px 20px;
+    height: 65px; }
   article .body {
     padding-top: 20px;
     height: calc(100% - 66px);
     overflow: hidden;
     overflow-y: auto; }
-article .h1-input {
+article .title-input {
   border: none;
   background-color: #f6f8f8;
   padding: 0px;
-  margin: 0px; }
+  margin: 0px;
+  width: 80%; }
 article textarea.form-control {
   height: 80px; }
 article .settings {
